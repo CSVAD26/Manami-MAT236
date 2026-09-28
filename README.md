@@ -1,5 +1,5 @@
-## Student Sample
+## Manami Nakagawa
 
-Empty template for student github repository for storing and sharing weekly projects. 
+Hi, I am a PhD student in CS department.
+[My personal webpage](https://manami-bunbun.github.io/)
 
-This is the README document. Use it to describe a little about yourself!
