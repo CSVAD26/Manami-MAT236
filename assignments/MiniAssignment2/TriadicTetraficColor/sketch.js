@@ -9,6 +9,9 @@ let ringImage;
 let colorCount = 2;
 // let mode = 'triadic'; // change to 'tetradic' for tetradic colors
 
+let saturation = 50;
+let baseHue = 0;
+
 function setup() {
   createCanvas(800, 800);
   colorMode(HSB, 360, 100, 100);
@@ -31,23 +34,56 @@ function draw() {
   // text('click to toggle mode',50, height-50);
   textSize(20);
   text(
-    'click to toggle mode: ' + colorCount + ' colors',
+    'Press Space key to change the number of selected colors: ' + colorCount + ' colors',
     50,
     height - 50
   );
 }
 
-function mousePressed(){
-  colorCount = colorCount + 1;
+function keyPressed() {
+  if (key === ' ') {
+    colorCount = colorCount + 1;
 
-  if (colorCount > 4) {
-    colorCount = 2;
+    if (colorCount > 4) {
+      colorCount = 2;
+    }
+
+    return false;
   }
 }
 
-function drawSelectedColors() {
-  let baseHue = map(mouseX, 0, width, 0, 360);
+// function mousePressed(){
+//   colorCount = colorCount + 1;
 
+//   if (colorCount > 4) {
+//     colorCount = 2;
+//   }　
+// }
+
+function mouseDragged() {
+  let dx = mouseX - width / 2;
+  let dy = mouseY - height / 2;
+
+  
+  if (dx !== 0 || dy !== 0) {
+    baseHue = (degrees(atan2(dy, dx)) + 360) % 360;
+  }
+
+  let distance = dist(
+    mouseX, mouseY,
+    width / 2, height / 2
+  );
+
+  saturation = map(
+    distance,
+    innerRadius, outerRadius,
+    0, 100,
+    true
+  );
+}
+
+function drawSelectedColors() {
+  
   let hueStep = 360 / colorCount;
   let sliceAngle = TWO_PI / colorCount;
 
@@ -61,7 +97,7 @@ function drawSelectedColors() {
     let startAngle = -HALF_PI + i * sliceAngle;
     let endAngle = startAngle + sliceAngle;
 
-    fill(hue, 100, 100);
+    fill(hue, saturation, 100);
 
     arc(
       width / 2,
@@ -159,8 +195,15 @@ function drawSelectedColors() {
 function drawColorPosition(hue){
   push();
   translate(width / 2, height / 2); 
-  let x1 = cos(radians(hue)) * (innerRadius+(outerRadius-innerRadius)/2);
-  let y1 = sin(radians(hue)) * (innerRadius+(outerRadius-innerRadius)/2);
+
+   let markerRadius = map(
+    saturation,
+    0, 100,
+    innerRadius, outerRadius
+  );
+
+  let x1 = cos(radians(hue)) * markerRadius;
+  let y1 = sin(radians(hue)) * markerRadius;
   fill(0);
   ellipse(x1, y1, 20,20);
   pop();
