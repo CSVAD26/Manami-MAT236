@@ -2,7 +2,7 @@
 // Mouse position changes base hue value. Four squares show analogous colors (base, base +30, base +60, base +90).
 // extended from Rune Madsen's Color Scheme Analogous Example :https://printingcode.runemadsen.com/examples/color/scheme_analogous/index.html
 
-let outerRadius = 200;
+let outerRadius = 300;
 let innerRadius = 100; // hole size
 // let steps = 360/15; // resolution
 let ringImage;
@@ -19,7 +19,8 @@ function setup() {
 
 function draw() {
   background(100);
-  drawRing();
+  image(ringImage, 0, 0);
+  // drawRing();
   // if(mode === 'triadic'){
   //   drawTriadicColors();
   // } else if(mode === 'tetradic'){
@@ -48,16 +49,62 @@ function drawSelectedColors() {
   let baseHue = map(mouseX, 0, width, 0, 360);
 
   let hueStep = 360 / colorCount;
-  let squareWidth = width / colorCount;
+  let sliceAngle = TWO_PI / colorCount;
 
+  push();
+  noStroke();
+
+  // middle 
   for (let i = 0; i < colorCount; i++) {
     let hue = ((baseHue + i * hueStep) % 360 + 360) % 360;
 
-    fill(hue, 100, 100);
-    rect(i * squareWidth, 0, squareWidth, height / 4);
+    let startAngle = -HALF_PI + i * sliceAngle;
+    let endAngle = startAngle + sliceAngle;
 
+    fill(hue, 100, 100);
+
+    arc(
+      width / 2,
+      height / 2,
+      innerRadius * 2,
+      innerRadius * 2,
+      startAngle,
+      endAngle,
+      PIE
+    );
+  }
+
+
+  noFill();
+  stroke(0, 0, 200);
+  strokeWeight(50);
+
+  circle(
+    width / 2,
+    height / 2,
+    innerRadius * 2
+  );
+
+
+  noStroke();
+
+  for (let i = 0; i < colorCount; i++) {
+    let hue = ((baseHue + i * hueStep) % 360 + 360) % 360;
     drawColorPosition(hue);
   }
+
+  pop();
+
+  // let squareWidth = width / colorCount;
+
+  // for (let i = 0; i < colorCount; i++) {
+  //   let hue = ((baseHue + i * hueStep) % 360 + 360) % 360;
+
+  //   fill(hue, 100, 100);
+  //   rect(i * squareWidth, 0, squareWidth, height / 4);
+
+  //   drawColorPosition(hue);
+  // }
 }
 
 
@@ -166,9 +213,10 @@ function createRingImage() {
 
   ringImage.updatePixels();
 }
-function drawRing(){
 
-  image(ringImage, 0, 0);
+
+// function drawRing(){
+
   // push();
   // translate(width / 2, height / 2); // center of canvas
 
@@ -194,4 +242,4 @@ function drawRing(){
   // }
   // pop();
 
-}
+// }
