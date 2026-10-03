@@ -6,85 +6,108 @@ let outerRadius = 200;
 let innerRadius = 100; // hole size
 // let steps = 360/15; // resolution
 let ringImage;
-let mode = 'triadic'; // change to 'tetradic' for tetradic colors
-let saturation = map(r, innerRadius, outerRadius, 0, 100);
+let colorCount = 2;
+// let mode = 'triadic'; // change to 'tetradic' for tetradic colors
 
 function setup() {
   createCanvas(800, 800);
   colorMode(HSB, 360, 100, 100);
   noStroke();
-  
+
   createRingImage();
 }
 
 function draw() {
   background(100);
   drawRing();
-  if(mode === 'triadic'){
-    drawTriadicColors();
-  } else if(mode === 'tetradic'){
-    drawTetradicColors();
-  }
+  // if(mode === 'triadic'){
+  //   drawTriadicColors();
+  // } else if(mode === 'tetradic'){
+  //   drawTetradicColors();
+  // }
+  drawSelectedColors();
   fill(0);
-  text('click to toggle mode',50, height-50);
+  // text('click to toggle mode',50, height-50);
+  textSize(20);
+  text(
+    'click to toggle mode: ' + colorCount + ' colors',
+    50,
+    height - 50
+  );
 }
 
 function mousePressed(){
-  if(mode === 'triadic'){
-    mode = 'tetradic';
-  } else if(mode === 'tetradic'){
-    mode = 'triadic';
-  } 
+  colorCount = colorCount + 1;
+
+  if (colorCount > 4) {
+    colorCount = 2;
+  }
 }
 
-
-function drawTriadicColors(){
-  // Map mouseX to hue (0–360)
+function drawSelectedColors() {
   let baseHue = map(mouseX, 0, width, 0, 360);
 
-  let squareWidth = width/3;
-  // Square 1: base hue
-  fill((baseHue + 0) % 360, 100, 100);
-  rect(0, 0, squareWidth, height/4);
-  drawColorPosition(baseHue);
+  let hueStep = 360 / colorCount;
+  let squareWidth = width / colorCount;
 
-  // Square 2: base + 120
-  fill((baseHue + 120) % 360, 100, 100);
-  rect(squareWidth, 0, squareWidth, height/4);
-  drawColorPosition(baseHue + 120);
+  for (let i = 0; i < colorCount; i++) {
+    let hue = ((baseHue + i * hueStep) % 360 + 360) % 360;
 
-  // Square 3: base + 240
-  fill((baseHue + 240) % 360, 100, 100);
-  rect(squareWidth * 2, 0, squareWidth, height/4);
-  drawColorPosition(baseHue + 240);
+    fill(hue, 100, 100);
+    rect(i * squareWidth, 0, squareWidth, height / 4);
 
+    drawColorPosition(hue);
+  }
 }
 
-function drawTetradicColors(){
-  // Map mouseX to hue (0–360)
-  let baseHue = map(mouseX, 0, width, 0, 360);
 
-  let squareWidth = width/4;
-  // Square 1: base hue
-  fill((baseHue + 0) % 360, 100, 100);
-  rect(0, 0, squareWidth, height/4);
-  drawColorPosition(baseHue);
+// function drawTriadicColors(){
+//   // Map mouseX to hue (0–360)
+//   let baseHue = map(mouseX, 0, width, 0, 360);
 
-  // Square 2: base + 90
-  fill((baseHue + 90) % 360, 100, 100);
-  rect(squareWidth, 0, squareWidth, height/4);
-  drawColorPosition(baseHue + 90);
+//   let squareWidth = width/3;
+//   // Square 1: base hue
+//   fill((baseHue + 0) % 360, 100, 100);
+//   rect(0, 0, squareWidth, height/4);
+//   drawColorPosition(baseHue);
 
-  // Square 3: base + 180
-  fill((baseHue + 180) % 360, 100, 100);
-  rect(squareWidth * 2, 0, squareWidth, height/4);
-  drawColorPosition(baseHue + 180);
+//   // Square 2: base + 120
+//   fill((baseHue + 120) % 360, 100, 100);
+//   rect(squareWidth, 0, squareWidth, height/4);
+//   drawColorPosition(baseHue + 120);
 
-   // Square 4: base + 270
-  fill((baseHue + 270) % 360, 100, 100);
-  rect(squareWidth * 3, 0, squareWidth, height/4);
-  drawColorPosition(baseHue + 270);
-}
+//   // Square 3: base + 240
+//   fill((baseHue + 240) % 360, 100, 100);
+//   rect(squareWidth * 2, 0, squareWidth, height/4);
+//   drawColorPosition(baseHue + 240);
+
+// }
+
+// function drawTetradicColors(){
+//   // Map mouseX to hue (0–360)
+//   let baseHue = map(mouseX, 0, width, 0, 360);
+
+//   let squareWidth = width/4;
+//   // Square 1: base hue
+//   fill((baseHue + 0) % 360, 100, 100);
+//   rect(0, 0, squareWidth, height/4);
+//   drawColorPosition(baseHue);
+
+//   // Square 2: base + 90
+//   fill((baseHue + 90) % 360, 100, 100);
+//   rect(squareWidth, 0, squareWidth, height/4);
+//   drawColorPosition(baseHue + 90);
+
+//   // Square 3: base + 180
+//   fill((baseHue + 180) % 360, 100, 100);
+//   rect(squareWidth * 2, 0, squareWidth, height/4);
+//   drawColorPosition(baseHue + 180);
+
+//    // Square 4: base + 270
+//   fill((baseHue + 270) % 360, 100, 100);
+//   rect(squareWidth * 3, 0, squareWidth, height/4);
+//   drawColorPosition(baseHue + 270);
+// }
 
 function drawColorPosition(hue){
   push();
