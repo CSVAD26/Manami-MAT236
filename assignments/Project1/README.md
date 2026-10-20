@@ -1,15 +1,10 @@
-# DRIVE TO DRAW
+# Project 1: DRIVE TO DRAW
 
-Project 1 — MAT236  
-Manami Nakagawa  
-Working draft
+ — Manami Nakagawa  
 
 ![DRIVE TO DRAW demo](project1.gif)
 
-What if you could become a color and go for a drive? In DRIVE TO DRAW, a line is a trace of where you have been. Turn, change color, speed up, or pause, without needing to know what the picture will become. Travel through the canvas from the color's point of view, then look back to find the image your journey has left behind.
-
-
-
+We usually look at a canvas from above and decide where each color should go. What would drawing feel like from the color's point of view? DRIVE TO DRAW explores this idea through driving. With no fixed destination, you choose a direction, change speed, and leave a colored trail. The image gradually takes shape through the journey, even before you know what you want to draw.
 
 ## Idea
 
