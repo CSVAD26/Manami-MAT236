@@ -5,7 +5,7 @@
 let car = {
   x: 0,
   y: 0,
-  angle: 0,  // Set to -HALF_PI (facing up) after p5 starts.
+  angle: 0,
   speed: 3
 };
 
@@ -110,7 +110,7 @@ function updateCar() {
   let steering = sin(wheelAngle) * HALF_PI;
   car.angle += steering * 0.018;
   roadBend = lerp(roadBend, steering / HALF_PI, 0.08);
-  roadTravel += car.speed * 0.0008;
+  roadTravel = (roadTravel + car.speed * 0.0008 / 0.14) % 1;
   car.x += cos(car.angle) * car.speed;
   car.y += sin(car.angle) * car.speed;
 
@@ -337,18 +337,32 @@ function drawNeonLine(x1, y1, x2, y2, h) {
 // --- SPEED MARKERS ---
 
 function drawSpeedMarkers(h) {
-
-  // Faster driving leaves wider gaps between the road dots.
-  let spacing = map(car.speed, minSpeed, maxSpeed, 0.035, 0.14);
-  let offset = roadTravel % spacing;
-  noStroke();
-  fill(h, 65, 100, 90);
-  for (let t = offset; t < 1; t += spacing) {
-    let p = roadPoint(t * t);
-    let size = lerp(2, 10, t);
-    circle(p.x - p.halfWidth, p.y, size);
-    circle(p.x + p.halfWidth, p.y, size);
+  // Keep each repeat fixed; shorten the paint to make faster speeds visibly dashed.
+  const spacing = 0.14;
+  let speedRatio = constrain((car.speed - 3) / (maxSpeed - 3), 0, 1);
+  let dashLength = spacing * lerp(0.98, 0.16, sqrt(speedRatio));
+  let offset = roadTravel * spacing;
+  push();
+  stroke(h, 12, 100, 95);
+  strokeCap(ROUND);
+  for (let t = offset - spacing; t < 1; t += spacing) {
+    let start = max(0, t);
+    let end = min(1, t + dashLength);
+    if (end <= start) continue;
+    // Follow the road curve, just inside the neon edges for contrast.
+    for (let i = 0; i < 4; i++) {
+      let from = lerp(start, end, i / 4);
+      let to = lerp(start, end, (i + 1) / 4);
+      let a = roadPoint(from * from);
+      let b = roadPoint(to * to);
+      strokeWeight(lerp(1.5, 8, to));
+      for (let side of [-1, 1]) {
+        line(a.x + side * a.halfWidth * 0.88, a.y,
+          b.x + side * b.halfWidth * 0.88, b.y);
+      }
+    }
   }
+  pop();
 }
 
 // --- COLOR / STEERING WHEEL ---
