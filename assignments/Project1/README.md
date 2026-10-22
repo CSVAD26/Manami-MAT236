@@ -49,7 +49,7 @@ The main constraint is that the user draws through movement rather than placing 
 
 Another constraint is that color and steering share the same wheel. Choosing a new color can also change the direction of travel. This makes the two decisions depend on each other. It may be inconvenient when the user wants a very specific color and curve, but that tension is part of the tool's character. I want users to respond to unexpected marks instead of controlling every detail in advance.
 
-The freedom I am interested in does not require unlimited control. The connection between movement and color gives the user something to respond to while exploring. I hope the drawing can emerge from that experience, like the memory of a drive, instead of needing a clear plan before the first mark.
+These constraints encourage users to work with unexpected outcomes rather than plan every detail in advance. A turn made to change color might create an unexpected curve, while a change in speed alters the texture of the trail. I wanted these small surprises to become part of the creative process, rather than mistakes to correct.
 
 The dark background and bright lines give the work a consistent neon appearance. The user chooses hue, while the tool sets the brightness, saturation, and line treatment. These limits help different drawings feel related without making them identical.
 
