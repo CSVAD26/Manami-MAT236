@@ -1,28 +1,47 @@
 # Project 1: DRIVE TO DRAW
 
- — Manami Nakagawa  
+By Manami Nakagawa
 
 ![DRIVE TO DRAW demo](project1.gif)
 
-We usually look at a canvas from above and decide where each color should go. What would drawing feel like from the color's point of view? DRIVE TO DRAW explores this idea through driving. With no fixed destination, you choose a direction, change speed, and leave a colored trail. The image gradually takes shape through the journey, even before you know what you want to draw.
+When we draw, we usually look at a canvas from above, deciding where to place each color and line. In a way, we act like managers, controlling the drawing from the outside. But ***what if we could step inside the canvas and draw from the color's own point of view?*** DRIVE TO DRAW explores this idea through driving. Instead of placing strokes directly, you steer through the canvas, changing direction and speed while leaving a colorful trail behind. Without a fixed destination or a finished image in mind, the drawing gradually emerges from the journey itself.
 
 ## Idea
 
-After trying several drawing tools, I felt that an efficient canvas and color selection tools are useful when I already know what I want to express. They help me choose colors, adjust their properties, and place them where I want. In that situation, I felt like a manager of color, looking at the whole image from above and deciding where each color should go.
+The idea for DRIVE TO DRAW started with [Mini Assignment 2](../MiniAssignment2/README.md), where I created a tool to select colors by moving the mouse around a color wheel. As I moved the mouse in circles, the motion reminded me of turning a steering wheel.
 
-For this project, I wanted to explore a different relationship with color. What would drawing feel like from the color's own point of view? Rather than planning a complete image, I wanted to wander through a canvas as if I were going for a drive without a fixed destination. Here, freedom means being able to follow a feeling and discover where it leads, even without knowing what I want to draw beforehand.
+This made me think about how we usually draw. Most drawing tools let us look at the canvas from above, choosing colors and deciding where to place each line. In a way, we act like managers of colors and lines, controlling everything from the outside. But what if we could experience drawing from the color's own point of view?
 
-The driving idea grew out of [Mini Assignment 2](../MiniAssignment2/README.md), where I made a tool that selected colors through circular mouse movement around a color wheel. That motion reminded me of turning a steering wheel. I began to imagine a wheel that could change both a color and its direction of movement. This became DRIVE TO DRAW: the user drives a car, and its colored trail becomes the drawing. The car represents the moving color, inviting the user to imagine drawing from its point of view rather than directing it only from above.
+I started imagining a drawing tool where the user could drive through a canvas, like going for a drive without a fixed destination. Instead of deciding exactly what to draw beforehand, the user could explore, change direction and speed, and discover an image along the way. The steering wheel would also serve as a color wheel, connecting the direction of movement with the color of the trail.
 
-The interface shows a night road, a car, a steering wheel, and a speed display. The wheel is also a color wheel. This connects a familiar driving control with a drawing control. A small live preview shows the drawing from above, while the main view focuses on driving. Pressing END shows the finished path as an artwork.
+For the visual design, I drew inspiration from my experience of driving on a highway at night. I remember how the lane markings and lights seemed to glow against the darkness, making the road feel almost like a video game. I also felt as if I were part of those glowing lines, rather than simply observing them from the outside. I wanted to bring that feeling into drawing, where the user could move along with the line instead of controlling it from above.
+
+This became DRIVE TO DRAW, a drawing tool that combines driving and color selection. The main interface focuses on the driving experience, while a small live preview shows the drawing from above. At the end of the drive, the user can step back and see the entire path as a finished artwork.
 
 ## Functionality
 
-The car starts moving after a short countdown: READY?, 3, 2, 1, and GO! The left and right arrow keys turn the steering wheel. The up and down arrow keys change speed. The user can also drag the center of the wheel sideways or grab its outer ring and rotate it with the mouse. Space stops and resumes movement. While stopped, the user can still turn the wheel to choose a color before moving again.
+After a short countdown (READY?, 3, 2, 1, GO!), the car starts moving and leaves a colored trail behind. Users can steer using the left and right arrow keys or by rotating the steering wheel with the mouse. The up and down arrow keys control speed, while the spacebar pauses and resumes movement.
 
-The fixed pointer above the wheel shows the current color. As the wheel rotates, both the steering and the drawing color change. Each saved point contains the car's position, color, and speed. The preview uses these points to draw the path. At lower speeds, the line is continuous. Above the starting speed, the marks become shorter and gaps appear. This lets the user change the rhythm of the drawing by accelerating and slowing down.
+The steering wheel also works as a color wheel. A fixed pointer indicates the currently selected color, so turning the wheel changes both the car's direction and the color of its trail. Users can also pause the car to select a color without moving.
 
-The preview is visible at the start and can be hidden with its button or the R key. END switches to a larger view of the artwork. START OVER clears the path and begins a new session. To run the project locally, open this folder with VS Code and serve `index.html` using Live Server. The project uses p5.js, with the library files included in the `libraries` folder.
+Speed affects not only how fast the car moves, but also how the drawing looks. At lower speeds, the trail forms a continuous line. At higher speeds, the marks become shorter and more spaced out, creating a dashed pattern. By accelerating and slowing down, users can change the rhythm and texture of their drawing.
+
+A small live preview shows the drawing from above and can be hidden or revealed using the R key or the preview button. Pressing END reveals the full artwork, while START OVER clears the drawing and begins a new session.
+
+## Controls
+
+| Input | Action |
+| --- | --- |
+| Left / Right arrow keys | Turn the wheel to change steering and color. |
+| Up / Down arrow keys | Increase or decrease the driving speed. |
+| Drag the wheel's center sideways | Turn the wheel with the mouse. |
+| Drag around the wheel's outer ring | Rotate the wheel with the mouse. |
+| Space | Stop or resume movement while keeping the chosen speed. |
+| R or the preview button | Hide or reveal the live drawing preview. |
+| END | Finish the drive and display the artwork after the countdown. |
+| START OVER | Clear the artwork and begin a new countdown. |
+
+
 
 ## Design Principles and Constraints
 
@@ -36,18 +55,34 @@ The dark background and bright lines give the work a consistent neon appearance.
 
 ## Process and Iteration
 
+
+### Exploring the Idea
+
 ![DRIVE TO DRAW process and iteration](IMG_0590.jpg)
 
-Early on, I considered connecting the tool to the Spotify API so that the drawing could respond to the music and its characteristics. However, I decided not to pursue this idea after considering practical issues such as authentication and setting up the app to run locally. I wanted the project to be easy to open and use, so I focused on the driving interaction instead.
 
-I also considered using sliders to select colors. However, connecting color selection to the steering wheel felt more intuitive to me within the driving interface. A separate slider would add another control to manage, while the wheel lets one action change both direction and color. This decision also strengthened the connection between moving through the canvas and leaving a colored trail.
+Early on, I considered connecting the tool to the Spotify API so that the drawing could respond to music, such as its rhythm and other characteristics. However, I decided not to pursue this idea because of practical challenges with authentication and running the app locally. I wanted the tool to be easy to open and use, so I chose to focus on the driving interaction instead.
 
-During development, I focused on how the user could discover the controls without someone explaining them aloud. The dashboard includes short keyboard hints, and the buttons describe their actions. I added a countdown so the user has a moment to look at the interface before the car moves. GO! marks the moment driving begins.
+I also explored different ways of selecting colors, including sliders and other separate controls. However, using the steering wheel as a color wheel made the most sense within the driving experience. Rather than introducing another control, I wanted a single action to change both direction and color. This also reinforced the idea that the user is moving along with the color instead of managing it separately.
 
-I also worked on visual hints around the car. I first tried arrows next to READY?, then moved them beside the road. The current version places four thick white arrows around the car and makes them pulse. They disappear when the user presses any arrow key and return after START OVER. I moved the car farther into the scene and made it smaller to leave room for these hints. The goal is to connect the arrow keys with the car through their position, rather than relying only on written directions.
+### Designing the Interaction
 
-## Reflections and Current Outcome
+Initially, I imagined users controlling the steering wheel with the mouse, since mouse interaction feels natural for a drawing tool. However, I also wanted speed to affect the appearance of the trail, allowing users to create continuous or dashed lines by accelerating and slowing down.
 
-The current tool turns a driving path into a colored drawing, with speed affecting the line pattern. One design challenge is balancing the driving scene with the artwork. The road and car make the interaction inviting, but the user also needs to understand that they are making an image. The live preview helps connect those two views, while hiding it lets the user focus on movement and discover the result afterward.
+The up and down arrow keys seemed like an intuitive way to control speed. However, this would require right-handed users to switch between the mouse or trackpad and the arrow keys. To make the interaction easier, I added steering controls to the left and right arrow keys as well, allowing users to control both direction and speed without switching between the mouse and keyboard.
 
-Another challenge is making the shared steering and color control understandable. The colored wheel and pointer provide feedback about the selected hue, while the trail shows how that choice affects the drawing. The pulsing arrows introduce keyboard input, but they do not explain every relationship in the tool.
+### Making the Interaction Discoverable
+
+Since users might instinctively reach for the mouse in a drawing tool, I wanted to encourage them to try the arrow keys without verbal instructions. I added four pulsing arrows around the car that disappear once an arrow key is pressed. I also adjusted the car's size and position to make room for these hints. The dashboard provides short keyboard instructions as additional guidance.
+
+![countdown](image.png)
+
+I also wanted users to recognize the driving experience before it began. Inspired by Mario Kart, I added a countdown (READY?, 3, 2, 1, GO!) to help users shift their expectations from drawing to driving, rather than suddenly starting the car.
+
+## Reflections 
+
+I'm not sure how practical DRIVE TO DRAW is as a conventional drawing tool. It doesn't offer precise control over colors or lines, and creating a specific image can be difficult. However, that is partly what I wanted to explore. Rather than making another tool for managing colors and shapes, I wanted to change the role of the creator from someone controlling a drawing from above to someone experiencing it from within. In that sense, I'm happy with how it turned out.
+
+Looking at the finished drawings, I also found myself thinking about how the experience is a little like life. While driving, we make small decisions without knowing exactly where they will lead. Only afterward can we look back and see the path those decisions have created. I like that the resulting drawing captures not only what we intended, but also the unexpected turns along the way.
+
+Ultimately, I hope people enjoy the experience of driving through colors, experimenting with the controls, and discovering what they have created at the end. Even if the result isn't what they initially imagined, I hope the process itself feels playful and rewarding.
