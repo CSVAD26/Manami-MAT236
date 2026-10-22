@@ -85,4 +85,4 @@ I'm not sure how practical DRIVE TO DRAW is as a conventional drawing tool. It d
 
 Looking at the finished drawings, I also found myself thinking about how the experience is a little like life. While driving, we make small decisions without knowing exactly where they will lead. Only afterward can we look back and see the path those decisions have created. I like that the resulting drawing captures not only what we intended, but also the unexpected turns along the way.
 
-Ultimately, I hope people enjoy the experience of driving through colors, experimenting with the controls, and discovering what they have created at the end. Even if the result isn't what they initially imagined, I hope the process itself feels playful and rewarding.
+I hope people enjoy driving around, playing with colors, and seeing what they end up creating. Even if the drawing isn't what they expected, I hope they have fun along the way.
