@@ -86,3 +86,20 @@ I'm not sure how practical DRIVE TO DRAW is as a conventional drawing tool. It d
 Looking at the finished drawings, I also found myself thinking about how the experience is a little like life. While driving, we make small decisions without knowing exactly where they will lead. Only afterward can we look back and see the path those decisions have created. I like that the resulting drawing captures not only what we intended, but also the unexpected turns along the way.
 
 I hope people enjoy driving around, playing with colors, and seeing what they end up creating. Even if the drawing isn't what they expected, I hope they have fun along the way.
+
+
+### Peer Feedback (October 24)
+
+During the peer review, Leah tried my drawing tool. As I expected, she initially reached for the trackpad, so I was a little nervous about whether she would notice the keyboard controls. Fortunately, she discovered the arrow keys first, followed by the spacebar. It was interesting to learn from Prof. Jacobs that showing hints before users discover an action is an example of feedforward. I was happy to learn that there was a name for the design approach I had been experimenting with.
+
+One thing that surprised me was that Leah seemed to assume the default drawing would be a wavy line. In fact, without steering, the car would initially move straight, while continuous steering can eventually create a circle. I wonder whether discovering these patterns requires more than ten minutes of interaction, or whether being observed made her feel that she should keep moving the steering wheel. It made me think about how the observation setting itself might influence the way people interact with a tool.
+
+What I enjoyed most was watching her use the tool with the overview hidden. At that point, she seemed to focus more on freely driving than on deliberately creating a drawing. This was close to the experience I had hoped to create: shifting the user's attention from managing lines on a canvas to exploring from within it. Seeing someone else interact with the tool this way was especially rewarding.
+
+
+
+#### AI Assistance
+
+I used AI assistance for parts of the visual implementation, particularly positioning and arranging the rectangles and other geometric shapes used to construct the car.
+
+Initially, I tried simpler alternatives, including emojis, but they looked out of place and drew too much attention away from the drawing experience. I wanted the car to feel like a natural part of the driving scene, but I did not yet have the technical skills to construct a convincing car from basic geometric shapes on my own. AI helped me implement this visual element so I could focus on developing the interaction and the overall creative experience.
